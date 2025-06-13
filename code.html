@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>اختيار الإجراء</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      direction: rtl;
+    }
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
+
+    video#bgVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .container {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      height: 180px;
+      width: 320px;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.4s, box-shadow 0.4s;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 150%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      transform: rotate(45deg);
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { left: -75%; }
+      50% { left: 100%; }
+      100% { left: 100%; }
+    }
+
+    .card.red {
+      background: linear-gradient(135deg, #ff4d4d, #c41c1c);
+      box-shadow: 0 0 20px rgba(255, 77, 77, 0.7);
+    }
+
+    .card.blue {
+      background: linear-gradient(135deg, #3b82f6, #1e40af);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.7);
+    }
+
+    .card.green {
+      background: linear-gradient(135deg, #22c55e, #15803d);
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.7);
+    }
+
+    .card:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+    }
+
+    .card p {
+      z-index: 1;
+      margin: 8px 0;
+    }
+
+    .card p.tip {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .card p.second-text {
+      font-size: 1em;
+    }
+
+    @media (max-width: 400px) {
+      .card {
+        width: 90vw;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- خلفية الفيديو -->
+  <video autoplay muted loop id="bgVideo">
+    <source src="background.mp4" type="video/mp4" />
+    متصفحك لا يدعم تشغيل الفيديو.
+  </video>
+
+  <!-- البطاقات -->
+  <div class="container">
+    <div class="cards">
+      <div class="card red" onclick="window.location.href='page1.html'">
+        <p class="tip">1300 DZD </p>
+        <p class="second-text">الإشتراك الأسبوعي يعطيك 20 جلسة صالحة لمدة 7 أيام</p>
+      </div>
+      <div class="card blue" onclick="window.location.href='page2.html'">
+        <p class="tip">3500 DZD</p>
+        <p class="second-text">الإشتراك الشهري يعطيك 100 جلسة صالحة لمدة 30 يوم   </p>
+      </div>
+      <div class="card green" onclick="window.location.href='page3.html'">
+        <p class="tip">23990 DZD</p>
+        <p class="second-text">الإشتراك السنوي يعطيك 2000 جلسة صالحة لمدة 365 يوم</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

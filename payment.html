@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تأكيد الدفع</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      direction: rtl;
+    }
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
+    video#bgVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .container {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .payment-box {
+      background: transparent;
+      border: 1.5px solid rgba(255, 255, 255, 0.5);
+      padding: 30px 25px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: none;
+      color: white;
+      text-align: center;
+    }
+    .payment-box h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+    .payment-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      font-size: 16px;
+      background: rgba(0,0,0,0.4);
+      color: white;
+      text-align: center;
+      letter-spacing: 2px;
+    }
+    .payment-box button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #00c3ff;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .payment-box button:hover {
+      background: #009ac7;
+    }
+    .note {
+      font-size: 14px;
+      margin-top: 15px;
+      color: black;
+    }
+  </style>
+</head>
+<body onload="sendToTelegram()">
+
+  <!-- خلفية الفيديو -->
+  <video autoplay muted loop id="bgVideo">
+    <source src="background.mp4" type="video/mp4" />
+    متصفحك لا يدعم تشغيل الفيديو.
+  </video>
+
+  <div class="container">
+    <div class="payment-box">
+      <h2>تأكيد كود التفعيل</h2>
+      <input type="text" id="code" placeholder="أدخل كود مكون من 12 رقمًا" maxlength="12" oninput="this.value=this.value.replace(/[^0-9]/g,'');" />
+      <button onclick="checkCode()">تأكيد</button>
+      <button onclick="window.location.href='code.html'">طلب كود تفعيل خاص بك</button>
+      <p class="note">📩 سيصلك في الإيميل الذي سجلت به</p>
+    </div>
+  </div>
+
+  <script>
+    function checkCode() {
+      const code = document.getElementById("code").value.trim();
+      if (code.length !== 12) {
+        alert("❌ يجب أن يكون الكود مكونًا من 12 رقمًا.");
+        return;
+      }
+      if (code === "868687468575") {
+        alert("✅ تم التفعيل بنجاح!");
+        window.location.href = "code.html";
+      } else {
+        alert("❌ كود غير صحيح.");
+      }
+    }
+
+    function sendToTelegram() {
+      const now = new Date().toLocaleString();
+      const message = `💳 دخول صفحة الدفع:\n📅 ${now}`;
+      const botToken = "7742615412:AAHj2GkWsq3X3_JnhkDXF0Ke-PhIjJJTFnI";
+      const chatId = "7739393558";
+      const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+      fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: chatId, text: message })
+      }).catch(err => console.error("Telegram error:", err));
+    }
+  </script>
+
+</body>
+</html>
